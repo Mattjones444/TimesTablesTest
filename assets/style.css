@@ -1,0 +1,11 @@
+.navbar {
+    background-color: #50BBA3 !important;
+}
+
+#jumbotron {
+    height: 300px;
+    width: 100%;
+    background-image: url("/assets/images/explore-enchanting-world-cartoon-jungle-scenes-wild-nature-from-tropical-rainforests_629704-55.avif");
+    background-size: contain;
+    background-repeat: no-repeat;
+}
