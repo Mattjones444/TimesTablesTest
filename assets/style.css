@@ -1,11 +1,33 @@
 .navbar {
-    background-color: #50BBA3 !important;
+    background-color: blue !important;
+    z-index: 1;
+
 }
 
-#jumbotron {
-    height: 300px;
-    width: 100%;
-    background-image: url("/assets/images/explore-enchanting-world-cartoon-jungle-scenes-wild-nature-from-tropical-rainforests_629704-55.avif");
-    background-size: contain;
+.nav-link {
+    color: #fff;
+}
+
+.nav-link:hover {
+    color: yellow;
+}
+
+.background-image {
     background-repeat: no-repeat;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    object-fit: cover;
+    z-index: 0;
+}
+
+.start-game {
+    position: fixed;
+    z-index: 2;
+    margin-top: 330px;
+    margin-left: 120px;
+    color: #fff;
+    background-color: #000;
 }
