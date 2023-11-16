@@ -77,3 +77,46 @@
     background-color: #000;
     position: absolute;
 }
+
+/* Game Area */
+
+.background-image-game {
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    object-fit: fill;
+    z-index: -1;
+}
+
+#question-wrapper {
+    display: flex;
+    justify-content: center;
+    background-color: transparent;
+    margin-top: 255px;
+}
+
+.question-box {
+    background-color: transparent;
+    display: contents;
+    z-index: 3;
+}
+
+.question,
+.question-number {
+    color: #fff;
+}
+
+.num1,
+.num2,
+.operator {
+    color: #fff;
+}
+
+/* Answer Section */
+
+#answer-wrapper {
+    display: grid;
+}
