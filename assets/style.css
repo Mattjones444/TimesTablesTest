@@ -1,11 +1,11 @@
 .navbar {
-    background-color: blue !important;
+    background-color: #10053d !important;
     z-index: 1;
 
 }
 
-.nav-link {
-    color: #fff;
+.nav-links {
+    color: gold;
 }
 
 .nav-link:hover {
@@ -23,11 +23,57 @@
     z-index: 0;
 }
 
+
 .start-game {
-    position: fixed;
+    display: flex;
+    justify-content: center;
+}
+
+.start-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     z-index: 2;
     margin-top: 330px;
-    margin-left: 120px;
     color: #fff;
     background-color: #000;
+    position: absolute;
+}
+
+.rules-wrapper {
+    display: grid;
+    position: relative;
+    place-items: center;
+    height: 100vh;
+}
+
+.rules {
+    position: relative;
+    width: 70%;
+    height: 80%;
+    border: 5px solid gold;
+    z-index: 2;
+    background-color: black;
+}
+
+.rules-header,
+.rules-text {
+    color: #fff;
+    text-align: center
+}
+
+.start-game1 {
+    display: flex;
+    justify-content: center;
+}
+
+.start-button1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+    margin-top: -20px;
+    color: #fff;
+    background-color: #000;
+    position: absolute;
 }
