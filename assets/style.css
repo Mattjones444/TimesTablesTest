@@ -117,6 +117,41 @@
 
 /* Answer Section */
 
-#answer-wrapper {
-    display: grid;
+.answer-box {
+    position: relative;
+    margin-top: 50px;
+}
+
+.button1,
+.button2,
+.button3,
+.button4 {
+    background-color: transparent;
+    border: none;
+    color: #fff;
+}
+
+.button1 {
+    position: fixed;
+    margin-top: 5px;
+    margin-left: 60px;
+}
+
+.button2 {
+    position: fixed;
+    margin-top: 5px;
+    margin-left: 40px;
+
+}
+
+.button3 {
+    position: fixed;
+    margin-top: 55px;
+    margin-left: 60px;
+}
+
+.button4 {
+    position: fixed;
+    margin-top: 55px;
+    margin-left: 40px;
 }
