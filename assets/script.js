@@ -1,81 +1,71 @@
 /* Moving from Start pages*/
 
-$('.start-button').on('click', function () {
-    window.location.href = 'rules.html';
+$(".start-button").on("click", function () {
+    window.location.href = "rules.html";
 });
 
-$('.start-button1').on('click', function () {
-    window.location.href = 'game.html';
+$(".start-button1").on("click", function () {
+    window.location.href = "game.html";
 });
 
-/* New Question on page load
-
-const num1 = 3;
-var num2 = Math.floor(Math.random() * (12 - 0 + 1) + 0);
-$('.num1').html(num1);
-$('.num2').html(num2);
-const correctAnswer = num1 * num2;
-
-function newQuestion() {
-   var answerNumber1 = correctAnswer;
-   var answerNumber2 = Math.floor(Math.random() * 37);
-   var answerNumber3 = Math.floor(Math.random() * 37);
-   var answerNumber4 = Math.floor(Math.random() * 37);
-   $('.button1').html(answerNumber1);
-   $('.button2').html(answerNumber2);
-   $('.button3').html(answerNumber3);
-   $('.button4').html(answerNumber4);
-};
-
-newQuestion();*/
+/* Array of Questions */
 
 const myQuestions = [
     {
-        question1: "3 x 3",
+        question: "3 x 3",
         answers: {
-            a: '3',
-            b: '9',
-            c: '12',
-            d: '36'
+            a: "3",
+            b: "9",
+            c: "12",
+            d: "36",
         },
-        correctAnswer: 'b'
+        correctAnswer: "b",
     },
     {
-        question2: "What is 3 x 6",
+        question: "3 x 6",
         answers: {
-            a: '18',
-            b: '12',
-            c: '30',
-            d: '10'
+            a: "18",
+            b: "12",
+            c: "30",
+            d: "10",
         },
-        correctAnswer: 'a'
+        correctAnswer: "a",
     },
     {
-        question3: "What is 3 x 9",
+        question: "3 x 9",
         answers: {
-            a: '18',
-            b: '3',
-            c: '33',
-            d: '27'
+            a: "18",
+            b: "3",
+            c: "33",
+            d: "27",
         },
-        correctAnswer: 'd'
-    }
+        correctAnswer: "d",
+    },
 ];
 
-function generateQuestion() {
+function generateRandomQuestion() {
     var randomIndex = Math.floor(Math.random() * myQuestions.length);
-    var selectedQuestion = myQuestions[randomIndex];
-
-    var questionContainer = $('.question-box');
-    questionContainer.html(selectedQuestion.question);
-    console.log(selectedQuestion.question);
+    var randomQuestion = myQuestions[randomIndex];
+    console.log(`index = ${randomIndex}, q = ${randomQuestion}`);
+    $(".question-box").text(randomQuestion.question);
 };
 
+function populateAnswerOptions(question) {
+    var answerWrapper = $("#answer-wrapper");
+    answerWrapper.empty();
+    for (var key in question.answers) {
+        var answerText = question.answers[key];
+        console.log(answerText);
+        answerWrapper.append(
+            `<button class="answer-option" data-answer="${key}">${answerText}</button>`
+        );
+    };
+};
 
-generateQuestion();
+generateRandomQuestion();
+populateAnswerOptions(randomQuestion);
 
-
-
-
-
-
+/* On submit Generate new question
+$("#submit").on("click", function () {
+    generateRandomQuestion();
+});*/
