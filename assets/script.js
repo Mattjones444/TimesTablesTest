@@ -43,29 +43,3 @@ const myQuestions = [
     },
 ];
 
-function generateRandomQuestion() {
-    var randomIndex = Math.floor(Math.random() * myQuestions.length);
-    var randomQuestion = myQuestions[randomIndex];
-    console.log(`index = ${randomIndex}, q = ${randomQuestion}`);
-    $(".question-box").text(randomQuestion.question);
-};
-
-function populateAnswerOptions(question) {
-    var answerWrapper = $("#answer-wrapper");
-    answerWrapper.empty();
-    for (var key in question.answers) {
-        var answerText = question.answers[key];
-        console.log(answerText);
-        answerWrapper.append(
-            `<button class="answer-option" data-answer="${key}">${answerText}</button>`
-        );
-    };
-};
-
-generateRandomQuestion();
-populateAnswerOptions(randomQuestion);
-
-/* On submit Generate new question
-$("#submit").on("click", function () {
-    generateRandomQuestion();
-});*/

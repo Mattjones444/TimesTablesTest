@@ -92,23 +92,14 @@
 }
 
 #question-wrapper {
-    display: flex;
+    display: relative;
     justify-content: center;
     background-color: transparent;
     margin-top: 255px;
+    margin-left: 130px;
 }
 
 
-.question,
-.question-number {
-    color: #fff;
-}
-
-.num1,
-.num2,
-.operator {
-    color: #fff;
-}
 
 /* Answer Section */
 
@@ -121,14 +112,13 @@
 
 
 .answer-option {
-    display: contents;
-    position: relative;
-    color: pink;
-    background-color: yellow;
+    color: #000;
     margin-top: 100px;
+
 
 }
 
 #submit {
     margin-left: 100px;
+    margin-top: 190px;
 }
