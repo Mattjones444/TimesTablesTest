@@ -1,7 +1,6 @@
 .navbar {
     background-color: #10053d !important;
     z-index: 1;
-
 }
 
 .nav-links {
@@ -22,7 +21,6 @@
     object-fit: cover;
     z-index: 0;
 }
-
 
 .start-game {
     display: flex;
@@ -59,7 +57,7 @@
 .rules-header,
 .rules-text {
     color: #fff;
-    text-align: center
+    text-align: center;
 }
 
 .start-game1 {
@@ -80,42 +78,46 @@
 
 /* Game Area */
 
-.background-image-game {
-    background-repeat: no-repeat;
-    width: 100%;
+html,
+body {
     height: 100%;
-    position: fixed;
-    top: 0;
-    left: 0;
-    object-fit: fill;
-    z-index: -1;
 }
 
-#question-wrapper {
-    display: relative;
-    justify-content: center;
-    background-color: transparent;
-    margin-top: 255px;
-    margin-left: 130px;
+body {
+    background-image: url("/assets/images/game-screen-background.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100% 100%;
+    background-position: fixed;
+    object-fit: cover;
 }
-
-
 
 /* Answer Section */
 
 .question-box {
-    margin-top: 150px;
+    margin-top: 240px;
+    margin-left: 120px;
     z-index: 3;
     color: #fff;
     font-size: 30px;
 }
 
+#answer-wrapper {
+    margin: 50px auto;
+    display: grid;
+    grid-template-columns: 80px 80px;
+    grid-row: auto;
+    grid-column-gap: 70px;
+    grid-row-gap: 25px;
+}
 
 .answer-option {
-    color: #000;
-    margin-top: 100px;
-
-
+    color: #fff;
+    background-color: transparent;
+    padding-left: 70px;
+    border: none;
+    display: flex;
+    align-items: center;
 }
 
 #submit {

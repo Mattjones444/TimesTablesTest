@@ -31,6 +31,16 @@ const myQuestions = [
         },
         correctAnswer: "d",
     },
+       {
+        question: "3 x 1",
+        answers: {
+            a: "21",
+            b: "9",
+            c: "3",
+            d: "30",
+        },
+        correctAnswer: "c",
+    },
 ];
 
 function generateRandomIndex() {
