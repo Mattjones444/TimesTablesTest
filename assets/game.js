@@ -9,7 +9,7 @@ const myQuestions = [
             c: "12",
             d: "36",
         },
-        correctAnswer: "b",
+        correctAnswer: "9",
     },
     {
         question: "3 x 6",
@@ -19,7 +19,7 @@ const myQuestions = [
             c: "30",
             d: "10",
         },
-        correctAnswer: "a",
+        correctAnswer: "18",
     },
     {
         question: "3 x 9",
@@ -29,9 +29,9 @@ const myQuestions = [
             c: "33",
             d: "27",
         },
-        correctAnswer: "d",
+        correctAnswer: "27",
     },
-       {
+    {
         question: "3 x 1",
         answers: {
             a: "21",
@@ -39,7 +39,87 @@ const myQuestions = [
             c: "3",
             d: "30",
         },
-        correctAnswer: "c",
+        correctAnswer: "3",
+    },
+    {
+        question: "3 x 2",
+        answers: {
+            a: "21",
+            b: "9",
+            c: "3",
+            d: "6",
+        },
+        correctAnswer: "6",
+    },
+    {
+        question: "3 x 4",
+        answers: {
+            a: "18",
+            b: "12",
+            c: "0",
+            d: "33",
+        },
+        correctAnswer: "12",
+    },
+    {
+        question: "3 x 5",
+        answers: {
+            a: "24",
+            b: "27",
+            c: "15",
+            d: "30",
+        },
+        correctAnswer: "15",
+    },
+    {
+        question: "3 x 7",
+        answers: {
+            a: "6",
+            b: "27",
+            c: "21",
+            d: "36",
+        },
+        correctAnswer: "21",
+    },
+    {
+        question: "3 x 8",
+        answers: {
+            a: "6",
+            b: "24",
+            c: "21",
+            d: "3",
+        },
+        correctAnswer: "24",
+    },
+    {
+        question: "3 x 10",
+        answers: {
+            a: "30",
+            b: "12",
+            c: "15",
+            d: "3",
+        },
+        correctAnswer: "30",
+    },
+    {
+        question: "3 x 11",
+        answers: {
+            a: "33",
+            b: "30",
+            c: "15",
+            d: "36",
+        },
+        correctAnswer: "33",
+    },
+    {
+        question: "3 x 12",
+        answers: {
+            a: "24",
+            b: "27",
+            c: "18",
+            d: "36",
+        },
+        correctAnswer: "36",
     },
 ];
 
@@ -54,11 +134,9 @@ function populateQuestionDescription(question) {
 
 function populateAnswerOptions(question) {
     var answerWrapper = $("#answer-wrapper");
-    console.log(answerWrapper);
     answerWrapper.empty();
     for (var key in question.answers) {
         var answerText = question.answers[key];
-        console.log(answerText);
         answerWrapper.append(
             `<button class="answer-option" data-answer="${key}">${answerText}</button>`
         );
@@ -76,3 +154,44 @@ function init() {
 };
 
 init();
+
+const totalQuestions = 10;
+let questionCounter = 0;
+
+function checkAnswerAndGenerateNewQuestion(selectedAnswer) {
+    var currentQuestion = myQuestions[randomIndex];
+    var correctAnswer = currentQuestion.correctAnswer;
+
+    if (selectedAnswer === correctAnswer) {
+        var scoreWrapper = $('#score-display');
+        scoreWrapper.empty();
+        scoreWrapper.innerHTML = 'Correct Answer';
+        scoreWrapper.addClass('score-display');
+        console.log("Correct!");
+        $('.answer-option[data-answer="' + correctAnswer + '"]');
+    } else {
+        console.log("Incorrect! The correct answer is: " + correctAnswer);
+
+    }
+    questionCounter++;
+
+    if (questionCounter === totalQuestions) {
+        console.log("Game Over! You've completed " + totalQuestions + " questions.");
+
+    } else {
+
+        generateNewQuestion();
+
+
+        $('.answer-option').off('click').on('click', function () {
+            var selectedAnswer = $(this).text();
+            checkAnswerAndGenerateNewQuestion(selectedAnswer);
+        });
+    }
+}
+
+// Initial setup of event handler
+$('.answer-option').on('click', function () {
+    var selectedAnswer = $(this).text();
+    checkAnswerAndGenerateNewQuestion(selectedAnswer);
+});

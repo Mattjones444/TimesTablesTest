@@ -90,6 +90,7 @@ body {
     background-size: 100% 100%;
     background-position: fixed;
     object-fit: cover;
+    z-index: -1;
 }
 
 /* Answer Section */
@@ -120,7 +121,10 @@ body {
     align-items: center;
 }
 
-#submit {
-    margin-left: 100px;
-    margin-top: 190px;
+.score-display {
+    position: relative;
+    background-color: green;
+    z-index: 50;
+    color: #fff;
+    height: 100px;
 }
