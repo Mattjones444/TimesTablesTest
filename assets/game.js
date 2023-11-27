@@ -165,14 +165,22 @@ function checkAnswerAndGenerateNewQuestion(selectedAnswer) {
     if (selectedAnswer === correctAnswer) {
         var scoreWrapper = $('#score-display');
         scoreWrapper.empty();
-        scoreWrapper.innerHTML = 'Correct Answer';
         scoreWrapper.addClass('score-display');
+        scoreWrapper.text("Correct Answer");
+        setTimeout(function () {
+            $("#score-display").removeClass("score-display");
+        }, 2000);
         console.log("Correct!");
-        $('.answer-option[data-answer="' + correctAnswer + '"]');
     } else {
-        console.log("Incorrect! The correct answer is: " + correctAnswer);
+        var scoreWrapper = $('#score-display');
+        scoreWrapper.empty();
+        scoreWrapper.addClass('no-score-display');
+        scoreWrapper.text("Incorrect! The correct answer is: " + correctAnswer);
+        setTimeout(function () {
+            $("#score-display").removeClass("no-score-display");
+        }, 2000);
+    };
 
-    }
     questionCounter++;
 
     if (questionCounter === totalQuestions) {
@@ -187,8 +195,8 @@ function checkAnswerAndGenerateNewQuestion(selectedAnswer) {
             var selectedAnswer = $(this).text();
             checkAnswerAndGenerateNewQuestion(selectedAnswer);
         });
-    }
-}
+    };
+};
 
 // Initial setup of event handler
 $('.answer-option').on('click', function () {
