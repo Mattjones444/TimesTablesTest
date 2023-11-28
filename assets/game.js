@@ -143,10 +143,13 @@ function populateAnswerOptions(question) {
     };
 };
 
+
+
 function generateNewQuestion() {
     randomIndex = generateRandomIndex();
     populateQuestionDescription(myQuestions[randomIndex]);
     populateAnswerOptions(myQuestions[randomIndex]);
+
 };
 
 function init() {
@@ -183,14 +186,11 @@ function checkAnswerAndGenerateNewQuestion(selectedAnswer) {
 
     questionCounter++;
 
-    if (questionCounter === totalQuestions) {
-        console.log("Game Over! You've completed " + totalQuestions + " questions.");
-
+    if (questionCounter == totalQuestions) {
+        $('#answer-wrapper').hide();
+        $('question-wrapper').hide();
     } else {
-
         generateNewQuestion();
-
-
         $('.answer-option').off('click').on('click', function () {
             var selectedAnswer = $(this).text();
             checkAnswerAndGenerateNewQuestion(selectedAnswer);
