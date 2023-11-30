@@ -5,7 +5,7 @@ $(".start-button").on("click", function () {
 });
 
 $(".start-button1").on("click", function () {
-    window.location.href = "game.html";
+    window.location.href = "gameScreen1.html";
 });
 
 /* Array of Questions */

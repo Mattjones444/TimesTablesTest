@@ -79,34 +79,40 @@
 
 /* Game Area */
 
-html,
-body {
-    height: 100%;
+.background-image1 {
+    background-image: url(/assets/images/background-image.png);
+    height: 220px;
+    object-fit: contain;
+    width: 100%;
 }
 
-body {
-    background-image: url("/assets/images/game-screen-background.png");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: 100% 100%;
-    background-position: fixed;
-    object-fit: cover;
-    z-index: -1;
-}
+
 
 /* Answer Section */
 
-.question-box {
-    margin-top: -70px;
-    margin-left: 120px;
-    z-index: 3;
-    color: #fff;
-    position: fixed;
-    font-size: 30px;
-    display: inline-block;
+#question-answer {
+    background-color: black;
+    height: 300px;
+    border-top: grey solid 3px;
+    display: flex;
+    justify-content: center;
+
 }
 
-#answer-wrapper {
+.question-box {
+    width: 150px;
+    height: 50px;
+    background: transparent;
+    border-radius: 170px / 50px;
+    border: silver solid 3px;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+
+/*#answer-wrapper {
     margin: 50px auto;
     display: grid;
     grid-template-columns: 80px 80px;
@@ -114,10 +120,10 @@ body {
     grid-column-gap: 70px;
     grid-row-gap: 25px;
     margin-top: 250px;
-}
+}*/
 
 .answer-option {
-    color: #fff;
+    color: #000;
     background-color: transparent;
     padding-left: 70px;
     border: none;
@@ -132,7 +138,7 @@ body {
 .score-display {
     background-color: green;
     z-index: 50;
-    color: #fff;
+    color: #000;
     font-size: 22px;
     height: 40px;
     display: flex;
@@ -142,7 +148,7 @@ body {
 .no-score-display {
     background-color: red;
     z-index: 50;
-    color: #fff;
+    color: #000;
     font-size: 18px;
     height: 40px;
     display: flex;
@@ -150,36 +156,3 @@ body {
 }
 
 /* Media Queries */
-
-@media screen and (min-width: 328px) {
-
-    .question-box {
-        margin-left: 140px;
-    }
-
-    .answer-option {
-        padding-left: 85px;
-    }
-}
-
-@media screen and (min-width: 356px) {
-
-    .question-box {
-        margin-left: 140px;
-    }
-
-    .answer-option {
-        padding-left: 100px;
-    }
-}
-
-@media screen and (min-width: 396px) {
-
-    .question-box {
-        margin-left: 175px;
-    }
-
-    .answer-option {
-        padding-left: 115px;
-    }
-}
