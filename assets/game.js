@@ -133,7 +133,7 @@ function populateQuestionDescription(question) {
 };
 
 function populateAnswerOptions(question) {
-    var answerWrapper = $("#answer-wrapper");
+    var answerWrapper = $(".answer-wrapper");
     answerWrapper.empty();
     for (var key in question.answers) {
         var answerText = question.answers[key];

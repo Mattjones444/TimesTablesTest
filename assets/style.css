@@ -111,24 +111,27 @@
     margin-top: 30px;
 }
 
-
-/*#answer-wrapper {
-    margin: 50px auto;
-    display: grid;
-    grid-template-columns: 80px 80px;
-    grid-row: auto;
-    grid-column-gap: 70px;
-    grid-row-gap: 25px;
-    margin-top: 250px;
-}*/
+.answer-wrapper {
+    bottom: -50px;
+    position: absolute;
+    display: inline-flex;
+    flex-direction: row-reverse;
+    flex-wrap: wrap;
+}
 
 .answer-option {
-    color: #000;
-    background-color: transparent;
-    padding-left: 70px;
-    border: none;
+    width: 150px;
+    height: 50px;
+    background: transparent;
+    border-radius: 170px / 50px;
+    border: grey solid 3px;
+    color: #fff;
+    justify-content: center;
+    margin-top: 30px;
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    align-items: flex-end;
+
 }
 
 #score-display {
