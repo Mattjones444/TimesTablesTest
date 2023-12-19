@@ -1,205 +1,287 @@
-/* Array of Questions */
-
-const myQuestions = [
-    {
-        question: "3 x 3",
-        answers: {
-            a: "3",
-            b: "9",
-            c: "12",
-            d: "36",
-        },
-        correctAnswer: "9",
-    },
-    {
-        question: "3 x 6",
-        answers: {
-            a: "18",
-            b: "12",
-            c: "30",
-            d: "10",
-        },
-        correctAnswer: "18",
-    },
-    {
-        question: "3 x 9",
-        answers: {
-            a: "18",
-            b: "3",
-            c: "33",
-            d: "27",
-        },
-        correctAnswer: "27",
-    },
-    {
-        question: "3 x 1",
-        answers: {
-            a: "21",
-            b: "9",
-            c: "3",
-            d: "30",
-        },
-        correctAnswer: "3",
-    },
-    {
-        question: "3 x 2",
-        answers: {
-            a: "21",
-            b: "9",
-            c: "3",
-            d: "6",
-        },
-        correctAnswer: "6",
-    },
-    {
-        question: "3 x 4",
-        answers: {
-            a: "18",
-            b: "12",
-            c: "0",
-            d: "33",
-        },
-        correctAnswer: "12",
-    },
-    {
-        question: "3 x 5",
-        answers: {
-            a: "24",
-            b: "27",
-            c: "15",
-            d: "30",
-        },
-        correctAnswer: "15",
-    },
-    {
-        question: "3 x 7",
-        answers: {
-            a: "6",
-            b: "27",
-            c: "21",
-            d: "36",
-        },
-        correctAnswer: "21",
-    },
-    {
-        question: "3 x 8",
-        answers: {
-            a: "6",
-            b: "24",
-            c: "21",
-            d: "3",
-        },
-        correctAnswer: "24",
-    },
-    {
-        question: "3 x 10",
-        answers: {
-            a: "30",
-            b: "12",
-            c: "15",
-            d: "3",
-        },
-        correctAnswer: "30",
-    },
-    {
-        question: "3 x 11",
-        answers: {
-            a: "33",
-            b: "30",
-            c: "15",
-            d: "36",
-        },
-        correctAnswer: "33",
-    },
-    {
-        question: "3 x 12",
-        answers: {
-            a: "24",
-            b: "27",
-            c: "18",
-            d: "36",
-        },
-        correctAnswer: "36",
-    },
-];
-
-function generateRandomIndex() {
-    var randomIndex = Math.floor(Math.random() * myQuestions.length);
-    return randomIndex;
-};
-
-function populateQuestionDescription(question) {
-    $(".question-box").text(question.question);
-};
-
-function populateAnswerOptions(question) {
-    var answerWrapper = $(".answer-wrapper");
-    answerWrapper.empty();
-    for (var key in question.answers) {
-        var answerText = question.answers[key];
-        answerWrapper.append(
-            `<button class="answer-option" data-answer="${key}">${answerText}</button>`
-        );
-    };
-};
-
-
-
-function generateNewQuestion() {
-    randomIndex = generateRandomIndex();
-    populateQuestionDescription(myQuestions[randomIndex]);
-    populateAnswerOptions(myQuestions[randomIndex]);
-
-};
-
-function init() {
-    generateNewQuestion();
-};
-
-init();
-
+let operand1 = 3;
+let operand2;
 const totalQuestions = 10;
 let questionCounter = 0;
+let score = 0;
+let lives = 3;
+let correctAnswer;
 
-function checkAnswerAndGenerateNewQuestion(selectedAnswer) {
-    var currentQuestion = myQuestions[randomIndex];
-    var correctAnswer = currentQuestion.correctAnswer;
+function generateQuestion() {
+    let operand2 = Math.floor(Math.random() * 13);
+    let questionText = operand1 + " x " + operand2;
+    return questionText;
+}
 
-    if (selectedAnswer === correctAnswer) {
-        var scoreWrapper = $('#score-display');
+$(document).ready(function () {
+    generateQuestion();
+    let question = generateQuestion();
+    $(".question-box").text(question);
+    function generateRandomMultipleOfThree() {
+        const randomNumber = Math.floor(Math.random() * 10) + 1;
+        return Math.ceil(randomNumber / 3) * 3;
+    }
+
+    function generateQuestionAndOptions() {
+        operand1 = 3;
+        operand2 = Math.floor(Math.random() * 13);
+        correctAnswer = operand1 * operand2;
+        const incorrectAnswer1 = generateRandomMultipleOfThree();
+        const incorrectAnswer2 = generateRandomMultipleOfThree();
+        const incorrectAnswer3 = generateRandomMultipleOfThree();
+
+        const answerOptions = [
+            correctAnswer,
+            incorrectAnswer1,
+            incorrectAnswer2,
+            incorrectAnswer3,
+        ];
+        answerOptions.sort(() => Math.random() - 0.5);
+
+        const questionText = operand1 + " x " + operand2;
+
+        $(".question-box").text(questionText);
+        $(".answer-option:eq(0)").text(answerOptions[0]);
+        $(".answer-option:eq(1)").text(answerOptions[1]);
+        $(".answer-option:eq(2)").text(answerOptions[2]);
+        $(".answer-option:eq(3)").text(answerOptions[3]);
+    }
+    generateQuestionAndOptions();
+
+    function calculateAnswer() {
+        correctAnswer = operand1 * operand2;
+        return correctAnswer;
+    }
+
+    function increaseScore() {
+        let scoreContainer = $(".score-tracker");
+        score++;
+        scoreContainer.text(`Score: ${score}`);
+    }
+
+    function loseLife() {
+        let livesContainer = $(".lives-tracker");
+        lives--;
+        livesContainer.text(`Lives: ${lives}`);
+    }
+
+    function showCorrect() {
+        var scoreWrapper = $("#score-display");
         scoreWrapper.empty();
-        scoreWrapper.addClass('score-display');
+        scoreWrapper.addClass("score-display");
         scoreWrapper.text("Correct Answer");
         setTimeout(function () {
             $("#score-display").removeClass("score-display");
+            scoreWrapper.text("");
         }, 2000);
-        console.log("Correct!");
-    } else {
-        var scoreWrapper = $('#score-display');
+    }
+
+    function showIncorrect() {
+        var scoreWrapper = $("#score-display");
         scoreWrapper.empty();
-        scoreWrapper.addClass('no-score-display');
+        scoreWrapper.addClass("no-score-display");
         scoreWrapper.text("Incorrect! The correct answer is: " + correctAnswer);
         setTimeout(function () {
             $("#score-display").removeClass("no-score-display");
+            scoreWrapper.text("");
         }, 2000);
-    };
+    }
+
+    function livesEnd() {
+        if (lives === 0) {
+            $(".question-box").hide();
+            $(".answer-wrapper").hide();
+            $("#question-answer").addClass("end-game-lose");
+        }
+    }
+
+    function questionEnd() {
+        if (questionCounter == totalQuestions) {
+            $("#question-answer").text(
+                "Well Done! You got " +
+                score +
+                "out of " +
+                totalQuestions +
+                " questions correct!"
+            );
+        }
+    }
 
     questionCounter++;
 
-    if (questionCounter == totalQuestions) {
-        $('#answer-wrapper').hide();
-        $('question-wrapper').hide();
-    } else {
-        generateNewQuestion();
-        $('.answer-option').off('click').on('click', function () {
-            var selectedAnswer = $(this).text();
-            checkAnswerAndGenerateNewQuestion(selectedAnswer);
-        });
-    };
+    $(".answer-option").on("click", function () {
+        calculateAnswer();
+        let selectedAnswer = $(this).text();
+        let selectedAnswerNumber = parseInt(selectedAnswer, 10);
+        if (selectedAnswerNumber === correctAnswer) {
+            increaseScore();
+            generateQuestionAndOptions();
+            showCorrect();
+            questionEnd();
+        } else {
+            loseLife();
+            showIncorrect();
+            livesEnd();
+            questionEnd();
+        }
+        questionCounter++;
+        generateQuestionAndOptions();
+    });
+});
+var colour = "#00baff";
+var sparkles = 120;
+
+var x = (ox = 400);
+var y = (oy = 300);
+var swide = 800;
+var shigh = 600;
+var sleft = (sdown = 0);
+var tiny = new Array();
+var star = new Array();
+var starv = new Array();
+var starx = new Array();
+var stary = new Array();
+var tinyx = new Array();
+var tinyy = new Array();
+var tinyv = new Array();
+
+window.onload = function () {
+    if (document.getElementById) {
+        var i, rats, rlef, rdow;
+        for (var i = 0; i < sparkles; i++) {
+            var rats = createDiv(3, 3);
+            rats.style.visibility = "hidden";
+            document.body.appendChild((tiny[i] = rats));
+            starv[i] = 0;
+            tinyv[i] = 0;
+            var rats = createDiv(5, 5);
+            rats.style.backgroundColor = "transparent";
+            rats.style.visibility = "hidden";
+            var rlef = createDiv(1, 5);
+            var rdow = createDiv(5, 1);
+            rats.appendChild(rlef);
+            rats.appendChild(rdow);
+            rlef.style.top = "2px";
+            rlef.style.left = "0px";
+            rdow.style.top = "0px";
+            rdow.style.left = "2px";
+            document.body.appendChild((star[i] = rats));
+        }
+        set_width();
+        sparkle();
+    }
 };
 
-// Initial setup of event handler
-$('.answer-option').on('click', function () {
-    var selectedAnswer = $(this).text();
-    checkAnswerAndGenerateNewQuestion(selectedAnswer);
-});
+function sparkle() {
+    var c;
+    if (x != ox || y != oy) {
+        ox = x;
+        oy = y;
+        for (c = 0; c < sparkles; c++)
+            if (!starv[c]) {
+                star[c].style.left = (starx[c] = x) + "px";
+                star[c].style.top = (stary[c] = y) + "px";
+                star[c].style.clip = "rect(0px, 5px, 5px, 0px)";
+                star[c].style.visibility = "visible";
+                starv[c] = 50;
+                break;
+            }
+    }
+    for (c = 0; c < sparkles; c++) {
+        if (starv[c]) update_star(c);
+        if (tinyv[c]) update_tiny(c);
+    }
+    setTimeout("sparkle()", 40);
+}
+
+function update_star(i) {
+    if (--starv[i] == 25) star[i].style.clip = "rect(1px, 4px, 4px, 1px)";
+    if (starv[i]) {
+        stary[i] += 1 + Math.random() * 3;
+        if (stary[i] < shigh + sdown) {
+            star[i].style.top = stary[i] + "px";
+            starx[i] += ((i % 5) - 2) / 5;
+            star[i].style.left = starx[i] + "px";
+        } else {
+            star[i].style.visibility = "hidden";
+            starv[i] = 0;
+            return;
+        }
+    } else {
+        tinyv[i] = 50;
+        tiny[i].style.top = (tinyy[i] = stary[i]) + "px";
+        tiny[i].style.left = (tinyx[i] = starx[i]) + "px";
+        tiny[i].style.width = "2px";
+        tiny[i].style.height = "2px";
+        star[i].style.visibility = "hidden";
+        tiny[i].style.visibility = "visible";
+    }
+}
+
+function update_tiny(i) {
+    if (--tinyv[i] == 25) {
+        tiny[i].style.width = "1px";
+        tiny[i].style.height = "1px";
+    }
+    if (tinyv[i]) {
+        tinyy[i] += 1 + Math.random() * 3;
+        if (tinyy[i] < shigh + sdown) {
+            tiny[i].style.top = tinyy[i] + "px";
+            tinyx[i] += ((i % 5) - 2) / 5;
+            tiny[i].style.left = tinyx[i] + "px";
+        } else {
+            tiny[i].style.visibility = "hidden";
+            tinyv[i] = 0;
+            return;
+        }
+    } else tiny[i].style.visibility = "hidden";
+}
+
+document.onmousemove = mouse;
+function mouse(e) {
+    set_scroll();
+    y = e ? e.pageY : event.y + sdown;
+    x = e ? e.pageX : event.x + sleft;
+}
+
+function set_scroll() {
+    if (typeof self.pageYOffset == "number") {
+        sdown = self.pageYOffset;
+        sleft = self.pageXOffset;
+    } else if (document.body.scrollTop || document.body.scrollLeft) {
+        sdown = document.body.scrollTop;
+        sleft = document.body.scrollLeft;
+    } else if (
+        document.documentElement &&
+        (document.documentElement.scrollTop || document.documentElement.scrollLeft)
+    ) {
+        sleft = document.documentElement.scrollLeft;
+        sdown = document.documentElement.scrollTop;
+    } else {
+        sdown = 0;
+        sleft = 0;
+    }
+}
+
+window.onresize = set_width;
+function set_width() {
+    if (typeof self.innerWidth == "number") {
+        swide = self.innerWidth;
+        shigh = self.innerHeight;
+    } else if (document.documentElement && document.documentElement.clientWidth) {
+        swide = document.documentElement.clientWidth;
+        shigh = document.documentElement.clientHeight;
+    } else if (document.body.clientWidth) {
+        swide = document.body.clientWidth;
+        shigh = document.body.clientHeight;
+    }
+}
+
+function createDiv(height, width) {
+    var div = document.createElement("div");
+    div.style.position = "absolute";
+    div.style.height = height + "px";
+    div.style.width = width + "px";
+    div.style.overflow = "hidden";
+    div.style.backgroundColor = colour;
+    return div;
+}
